@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Sementes 🌱</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Calculadora de Sementes</h1>
+  
+  <label for="area">Área do terreno (m²):</label>
+  <input type="number" id="area" placeholder="Digite a área">
+
+  <label for="densidade">Sementes por m²:</label>
+  <input type="number" id="densidade" placeholder="Digite a densidade">
+
+  <button onclick="calcular()">Calcular</button>
+
+  <p id="resultado"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  background-color: #f0f8f5;
+}
+
+h1 {
+  color: #2e7d32;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #388e3c;
+}
+
+#resultado {
+  margin-top: 20px;
+  font-weight: bold;
+}
+function calcular() {
+  // Pega os valores digitados pelo usuário
+  const area = document.getElementById("area").value;
+  const densidade = document.getElementById("densidade").value;
+
+  // Verifica se os valores são válidos
+  if (area <= 0 || densidade <= 0) {
+    document.getElementById("resultado").textContent = "Por favor, insira valores válidos.";
+    document.getElementById("resultado").style.color = "red";
+    return;
+  }
+
+  // Calcula a quantidade total de sementes
+  const total = area * densidade;
+
+  // Mostra o resultado com destaque
+  const resultado = document.getElementById("resultado");
+  resultado.textContent = `Você precisa de ${total} sementes.`;
+
+  // Se o número for muito alto, muda a cor para vermelho
+  if (total > 1000) {
+    resultado.style.color = "red";
+  } else {
+    resultado.style.color = "green";
+  }
+}
